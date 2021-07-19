@@ -1,27 +1,32 @@
-import React from 'react';
-import {render} from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { createStore, compose } from 'redux';
-import { rootReducer } from './redux/rootReducer';
-import {Provider} from 'react-redux'
+import React from "react";
+import { render } from "react-dom";
+import "./index.css";
+import App from "./App";
+import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { createStore, compose } from "redux";
+import { rootReducer } from "./redux/rootReducer";
+import { Provider } from "react-redux";
+import thunk from "redux-thunk";
 
-const store = createStore(rootReducer, compose(
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-))
+const store = createStore(
+  rootReducer,
+  compose(
+    applyMiddleware(
+      thunk
+    )
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
 
 const AppProvider = (
   <Provider store={store}>
-    <App/>
+    <App />
   </Provider>
-)
+);
 render(
-  <React.StrictMode>
-   {AppProvider}
-  </React.StrictMode>,
-  document.getElementById('root')
+  <React.StrictMode>{AppProvider}</React.StrictMode>,
+  document.getElementById("root")
 );
 
 // If you want to start measuring performance in your app, pass a function

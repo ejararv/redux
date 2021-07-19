@@ -15,7 +15,7 @@ function App() {
       <div className="row">
         <div className="col">
           <h3>Posts</h3>
-          <Posts posts={[1, 2, 3]}></Posts>
+          <Posts ></Posts>
         </div>
         <div className="col">
           <h3>Async Posts</h3>
